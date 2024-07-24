@@ -1,4 +1,16 @@
 $(document).ready(function () {
+    $('.products__head-item').on('click', function (e) {
+        e.preventDefault();
+
+        var tab_id = $(this).data('tab');
+
+        $('.products__head-item').removeClass('products__head-item-active');
+        $(this).addClass('products__head-item-active');
+
+        $('.products__tab-content').hide();
+        $('#' + tab_id).show();
+    });
+    
     const $wrapper = $('.brands__wrapper');
     const $content = $wrapper.html();
     $wrapper.append($content);
@@ -129,7 +141,7 @@ $(document).ready(function () {
         observer.observe(el);
     });
 
-    
+
     $('.menu__links-ul a[data-target]').hover(
         function () {
             var target = $(this).data('target');
