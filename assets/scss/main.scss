@@ -200,10 +200,10 @@ body.no-scroll {
         background-color: #fff;
         z-index: 9000;
         display: flex;
-        transition: all 0.5s ease; 
+        transition: all 0.5s ease;
     }
     &__desk-mb.active {
-        left: 0; 
+        left: 0;
     }
     &__mb-decorations-head {
         nav {
@@ -267,7 +267,7 @@ body.no-scroll {
     &__sublinks {
         background-color: #fff;
         position: fixed;
-        left: 20%;
+        left: 18%;
         top: 0;
         min-height: 100vh;
         height: 100%;
@@ -296,7 +296,6 @@ body.no-scroll {
     &__sublinks.active {
         display: flex;
     }
-
 }
 
 .favorite {
@@ -920,6 +919,18 @@ body.no-scroll {
     }
 }
 @media screen and (max-width: 1100px) {
+    .navbar__mb {
+        display: block;
+        width: 100%;
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        z-index: 9000;
+        border-bottom: 1px solid #e5eaff;
+    }
+    .navbar {
+        display: none;
+    }
     .container {
         max-width: 100%;
         width: 100%;
@@ -986,18 +997,7 @@ body.no-scroll {
         font-size: 18px;
         line-height: 26px;
     }
-    .navbar__mb {
-        display: block;
-        width: 100%;
-        background-color: #fff;
-        position: fixed;
-        top: 0;
-        z-index: 9000;
-        border-bottom: 1px solid #e5eaff;
-    }
-    .navbar {
-        display: none;
-    }
+
     .menu__desk-content {
         padding: 20px 0;
     }
