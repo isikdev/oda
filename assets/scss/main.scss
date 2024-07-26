@@ -4,7 +4,7 @@
 @import "_assets";
 @import "_mobile";
 @import "_password";
-@import "_animations";
+// @import "_animations";
 body.no-scroll {
     overflow: hidden;
 }
@@ -715,14 +715,14 @@ body.no-scroll {
             }
         }
     }
-    &__head-item-active {
-        color: $black;
-    }
     &__head-item {
         color: $gray1;
         &:hover {
             color: $black;
         }
+    }
+    &__head-item-active {
+        color: $black;
     }
     &__body {
         margin: 20px 0;

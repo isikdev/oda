@@ -70,7 +70,6 @@
 }
 .slick-initialized .slick-slide {
   display: block;
-  max-width: 275px;
 }
 .slick-loading .slick-slide {
   visibility: hidden;
