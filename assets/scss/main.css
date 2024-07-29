@@ -1398,4 +1398,9 @@ body.no-scroll {
   .navbar__brand a img {
     max-width: 130px;
   }
+}
+@media screen and (max-width: 380px) {
+  .navbarburgermenu-mob img {
+    width: 80px;
+  }
 }/*# sourceMappingURL=main.css.map */
