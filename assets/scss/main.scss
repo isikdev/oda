@@ -4,7 +4,7 @@
 @import "_assets";
 @import "_mobile";
 @import "_password";
-@import "_animations";
+// @import "_animations";
 body.no-scroll {
     overflow: hidden;
 }
@@ -40,17 +40,39 @@ body.no-scroll {
         display: flex;
         align-items: center;
         margin: 10px 0;
+        width: auto;
 
         a {
             margin: 0 7px;
             transition: all 0.3s ease;
-            &:hover {
-            }
+            top: -15px;
         }
 
         .d-none {
             opacity: 0;
         }
+    }
+    &__links-menu {
+        display: flex;
+        align-items: center;
+        position: relative;
+        justify-content: flex-start; // выравниваем по началу
+    }
+    &__burgermenu,
+    &__close {
+        position: absolute; // абсолютное позиционирование
+        top: 0;
+        left: 0;
+        width: 40px;
+        height: 40px;
+        margin: 0; // убираем margin, чтобы позиционирование было через top и left
+        z-index: 9000;
+    }
+    &__burgermenu {
+        left: 0; // начальная позиция
+    }
+    &__close.active {
+        left: 40px; // чтобы кнопка закрытия появлялась рядом с бургером
     }
     &__hover {
         opacity: 1;
@@ -121,7 +143,7 @@ body.no-scroll {
         left: 0;
     }
     &__desk-content {
-        padding: 20px 50px;
+        padding: 40px 0px;
         display: flex;
         flex-direction: column;
         min-height: 90vh;
@@ -129,7 +151,25 @@ body.no-scroll {
         position: relative;
     }
     &__close {
-        transition: all 0.5s ease;
+        transition:
+            all 0.5s ease,
+            opacity 0.5s ease;
+        margin: 0 auto;
+        position: absolute;
+        left: 0;
+        top: -15px;
+        width: 80px;
+        height: 80px;
+        z-index: 10000;
+        display: none;
+        opacity: 0;
+        &.active {
+            display: block;
+            opacity: 1;
+            transition:
+                left 0.5s ease,
+                opacity 0.5s ease;
+        }
         &:hover {
             opacity: 0.5;
         }
@@ -138,6 +178,13 @@ body.no-scroll {
             border: 0px none;
             outline: 0px none;
             cursor: pointer;
+        }
+    }
+    &__close-mb {
+        button {
+            background: transparent;
+            border: 0px none;
+            outline: 0px none;
         }
     }
     &__links-ul {
@@ -1000,6 +1047,7 @@ body.no-scroll {
 
     .menu__desk-content {
         padding: 20px 0;
+        position: relative;
     }
     .footer__newsletter {
         display: flex;
@@ -1237,6 +1285,9 @@ body.no-scroll {
 @media screen and (max-width: 430px) {
     .navbar__brand a img {
         max-width: 130px;
+    }
+    .navbarburgermenu-mob img {
+        width: 80px;
     }
 }
 @media screen and (max-width: 380px) {

@@ -1,9 +1,8 @@
 $(document).ready(function () {
-    // Устанавливаем активный таб по умолчанию
+    // Скрытие и показ контента вкладок
     $('.products__tab-content').hide();
     $('#current').show();
 
-    // Функция переключения табов
     $('.products__head-item').on('click', function (e) {
         e.preventDefault();
 
@@ -16,13 +15,14 @@ $(document).ready(function () {
         $('#' + tab_id).show();
     });
 
-    // Ваш существующий код
+    // Дублирование контента для плавного скролла
     const $wrapper = $('.brands__wrapper');
     const $content = $wrapper.html();
     $wrapper.append($content);
     const contentWidth = $wrapper.width();
     $wrapper.css('animation-duration', contentWidth / 50 + 's'); // 50px/s скорость скролла
 
+    // Инициализация слайдера
     $('.news__cards-wrapper').slick({
         prevArrow: $('.slick-left'),
         nextArrow: $('.slick-right'),
@@ -50,6 +50,7 @@ $(document).ready(function () {
         ]
     });
 
+    // Поиск
     $('.navbar__link-search').on('click touchstart', function (e) {
         e.preventDefault();
         $('.search').toggleClass('active');
@@ -66,19 +67,30 @@ $(document).ready(function () {
         $('.search').removeClass('active');
     });
 
+    // Управление бургер-меню для десктопа
     $('.navbar__burgermenu').on('click touchstart', function (e) {
         e.preventDefault();
         $('.menu__desk').toggleClass('active');
         $(this).toggleClass('active');
+
+        if ($('.menu__desk').hasClass('active')) {
+            setTimeout(function () {
+                $('.menu__close').addClass('active');
+            }, 500);
+        } else {
+            $('.menu__close').removeClass('active');
+        }
     });
 
     $('.menu__close button').on('click touchstart', function (e) {
         e.preventDefault();
         $('.menu__desk').removeClass('active');
         $('.navbar__burgermenu').removeClass('active');
-        $('.menu__sublinks').removeClass('active'); // Скрываем подменю
+        $('.menu__sublinks').removeClass('active');
+        $('.menu__close').removeClass('active');
     });
 
+    // Управление мобильным бургер-меню
     $('.navbarburgermenu-mob').on('click touchstart', function (e) {
         e.preventDefault();
         $('.menu__desk-mb').toggleClass('active');
@@ -86,13 +98,14 @@ $(document).ready(function () {
         $(this).toggleClass('active'); // Анимация бургера
     });
 
-    $('.menu__desk-mb .menu__close button').on('click touchstart', function (e) {
+    $('.menu__close-mb button').on('click touchstart', function (e) {
         e.preventDefault();
         $('.menu__desk-mb').removeClass('active');
         $('body').removeClass('no-scroll'); // Включение скролла
         $('.navbarburgermenu-mob').removeClass('active'); // Анимация бургера
     });
 
+    // Управление корзиной
     $('.navbar__link-cart').on('click touchstart', function (e) {
         e.preventDefault();
         $('.cart').toggleClass('active');
@@ -103,6 +116,7 @@ $(document).ready(function () {
         $('.cart').removeClass('active');
     });
 
+    // Управление избранным
     $('.navbar__link-favorite').on('click touchstart', function (e) {
         e.preventDefault();
         $('.favorite').toggleClass('active');
@@ -113,6 +127,7 @@ $(document).ready(function () {
         $('.favorite').removeClass('active');
     });
 
+    // Управление логином
     $('.navbar__link-login').on('click touchstart', function (e) {
         e.preventDefault();
         $('.login').removeClass('fade-out').addClass('fade-in active');
@@ -128,12 +143,14 @@ $(document).ready(function () {
         }, 300);
     });
 
+    // Показ и скрытие подменю в мобильной версии
     $('.menu__mb-decorations-head').on('click', function (e) {
         e.preventDefault();
         var $body = $(this).next('.menu__mb-decorations-body');
         $body.slideToggle(300);
     });
 
+    // Наблюдатель за элементами для анимации
     const observerOptions = {
         threshold: 0.1 // Процент видимости элемента, при котором будет вызван callback
     };
@@ -153,6 +170,7 @@ $(document).ready(function () {
         observer.observe(el);
     });
 
+    // Наведение на ссылки для подменю
     $('.menu__links-ul a[data-target]').hover(
         function () {
             var target = $(this).data('target');
@@ -166,6 +184,7 @@ $(document).ready(function () {
         }
     );
 
+    // Скрытие подменю при уходе курсора
     $('.menu__sublinks').hover(
         function () {
             $(this).addClass('active');
@@ -175,6 +194,7 @@ $(document).ready(function () {
         }
     );
 
+    // Управление отображением пароля
     $('body').on('click', '.password-control', function () {
         if ($('#password-input').attr('type') == 'password') {
             $(this).addClass('view');

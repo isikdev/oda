@@ -103,7 +103,7 @@ select {
   }
 }
 .container {
-  max-width: 1250px;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding-left: 1rem;
@@ -174,38 +174,6 @@ select {
   height: 22px;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes fadeOutDown {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-}
-.fade-in-up {
-  animation: fadeInUp 1s ease forwards;
-}
-
-.fade-out-down {
-  animation: fadeOutDown 1s ease forwards;
-}
-
-.hidden {
-  opacity: 0;
-}
-
 body.no-scroll {
   overflow: hidden;
 }
@@ -240,13 +208,36 @@ body.no-scroll {
   display: flex;
   align-items: center;
   margin: 10px 0;
+  width: auto;
 }
 .navbar__links a {
   margin: 0 7px;
   transition: all 0.3s ease;
+  top: -15px;
 }
 .navbar__links .d-none {
   opacity: 0;
+}
+.navbar__links-menu {
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: flex-start;
+}
+.navbar__burgermenu, .navbar__close {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  z-index: 9000;
+}
+.navbar__burgermenu {
+  left: 0;
+}
+.navbar__close.active {
+  left: 40px;
 }
 .navbar__hover {
   opacity: 1;
@@ -310,7 +301,7 @@ body.no-scroll {
   left: 0;
 }
 .menu__desk-content {
-  padding: 20px 50px;
+  padding: 40px 0px;
   display: flex;
   flex-direction: column;
   min-height: 90vh;
@@ -318,7 +309,21 @@ body.no-scroll {
   position: relative;
 }
 .menu__close {
-  transition: all 0.5s ease;
+  transition: all 0.5s ease, opacity 0.5s ease;
+  margin: 0 auto;
+  position: absolute;
+  left: 0;
+  top: -15px;
+  width: 80px;
+  height: 80px;
+  z-index: 10000;
+  display: none;
+  opacity: 0;
+}
+.menu__close.active {
+  display: block;
+  opacity: 1;
+  transition: left 0.5s ease, opacity 0.5s ease;
 }
 .menu__close:hover {
   opacity: 0.5;
@@ -328,6 +333,11 @@ body.no-scroll {
   border: 0px none;
   outline: 0px none;
   cursor: pointer;
+}
+.menu__close-mb button {
+  background: transparent;
+  border: 0px none;
+  outline: 0px none;
 }
 .menu__links-ul nav ul {
   list-style: none;
@@ -1159,6 +1169,7 @@ body.no-scroll {
   }
   .menu__desk-content {
     padding: 20px 0;
+    position: relative;
   }
   .footer__newsletter {
     display: flex;
@@ -1397,6 +1408,9 @@ body.no-scroll {
 @media screen and (max-width: 430px) {
   .navbar__brand a img {
     max-width: 130px;
+  }
+  .navbarburgermenu-mob img {
+    width: 80px;
   }
 }
 @media screen and (max-width: 380px) {
